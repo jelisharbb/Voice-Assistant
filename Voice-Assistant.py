@@ -9,6 +9,7 @@ import speech_recognition as sr
 import pyttsx3
 import pywhatkit
 import datetime
+from datetime import date
 import wikipedia
 
 listener = sr.Recognizer()
@@ -18,7 +19,6 @@ jarvis.setProperty("rate", 140)
 # try and except statement to catch the error prevent the program from crashing
 try:
     with sr.Microphone() as source:
-        print()
         print("Jarvis is here. Call his attention.")
 
         # loop for user to say "hey, jarvis"
@@ -64,10 +64,14 @@ try:
                 jarvis.say("It's" + time)
                 jarvis.runAndWait()
 
+            elif "date" in command:
+                date = date.today().strftime("%B %d %Y")
+                jarvis.say("Today is" + date)
+                jarvis.runAndWait()
+
             elif "who is" in command:
-                person = command.replace('who is', '')
+                person = command.replace('who is ', '')
                 info = wikipedia.summary(person, 1)
-                print(info)
                 jarvis.say(info)
                 jarvis.runAndWait()
 
