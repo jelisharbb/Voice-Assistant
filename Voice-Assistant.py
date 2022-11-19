@@ -6,14 +6,16 @@
 
 # importing modules
 import speech_recognition as sr
+import pyttsx3
 
 listener = sr.Recognizer()
+jarvis = pyttsx3.init()
 
 # try and except statement to catch the error prevent the program from crashing
 try:
     with sr.Microphone() as source:
         print()
-        print("Jarvis is here.")
+        print("Jarvis is here. Call his attention.")
 
         while True:
             voice = listener.listen(source)
@@ -26,8 +28,11 @@ try:
             else:
                 print('Say "Hey, Jarvis" for him to listen.')
 
-        print()
-        print("Hi! I'm listening...")
+        # print()
+        # print("Hi! I'm listening...")
+        jarvis.say("Hi, I'm listening")
+        jarvis.runAndWait()
+
         voice = listener.listen(source)
         command = listener.recognize_google(voice)
 
