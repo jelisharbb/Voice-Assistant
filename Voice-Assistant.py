@@ -9,6 +9,7 @@ import speech_recognition as sr
 import pyttsx3
 import pywhatkit
 import datetime
+import wikipedia
 
 listener = sr.Recognizer()
 jarvis = pyttsx3.init()
@@ -63,10 +64,21 @@ try:
                 jarvis.say("It's" + time)
                 jarvis.runAndWait()
 
-            elif "goodbye jarvis" or "goodbye" in command:
+            elif "who is" in command:
+                person = command.replace('who is', '')
+                info = wikipedia.summary(person, 1)
+                print(info)
+                jarvis.say(info)
+                jarvis.runAndWait()
+
+            elif "goodbye jarvis" in command or "goodbye" in command:
                 jarvis.say("Thank you. Goodbye!")
                 jarvis.runAndWait()
                 break
+
+            else:
+                jarvis.say("I don't know what you're saying. Try again.")
+                jarvis.runAndWait()
 
 except:
     pass
