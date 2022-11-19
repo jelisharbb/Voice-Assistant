@@ -12,23 +12,25 @@ listener = sr.Recognizer()
 # try and except statement to catch the error prevent the program from crashing
 try:
     with sr.Microphone() as source:
-        # print()
-        # print("Hi! I'm listening...")
-        voice = listener.listen(source)
-        command = listener.recognize_google(voice)
+        print()
+        print("Jarvis is here.")
 
         while True:
+            voice = listener.listen(source)
+            command = listener.recognize_google(voice)
             command = command.lower()
+
             if 'hey jarvis' == command:
                 break
 
             else:
-                print('Say "Hey, Jarvis" first.')
+                print('Say "Hey, Jarvis" for him to listen.')
 
         print()
         print("Hi! I'm listening...")
         voice = listener.listen(source)
         command = listener.recognize_google(voice)
+
         print(f"You: {command.capitalize()}.")
         print()
 
