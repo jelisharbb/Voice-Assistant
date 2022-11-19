@@ -10,6 +10,7 @@ import pyttsx3
 
 listener = sr.Recognizer()
 jarvis = pyttsx3.init()
+jarvis.setProperty("rate", 140)
 
 # try and except statement to catch the error prevent the program from crashing
 try:
@@ -35,9 +36,17 @@ try:
 
         voice = listener.listen(source)
         command = listener.recognize_google(voice)
+        command = command.lower()
 
-        print(f"You: {command.capitalize()}.")
-        print()
+        if "repeat what i'm saying" in command:
+            jarvis.say("Okay, I'm ready")
+            jarvis.runAndWait()
+
+            voice = listener.listen(source)
+            command = listener.recognize_google(voice)
+            jarvis.say(command)
+            jarvis.runAndWait()
+            print()
 
 except:
     pass
