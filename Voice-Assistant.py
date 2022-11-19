@@ -34,19 +34,27 @@ try:
         jarvis.say("Hi, I'm listening")
         jarvis.runAndWait()
 
-        voice = listener.listen(source)
-        command = listener.recognize_google(voice)
-        command = command.lower()
-
-        if "repeat what i'm saying" in command:
-            jarvis.say("Okay, I'm ready")
-            jarvis.runAndWait()
+        while True:
 
             voice = listener.listen(source)
             command = listener.recognize_google(voice)
-            jarvis.say(command)
-            jarvis.runAndWait()
-            print()
+            command = command.lower()
+
+            if "repeat what i'm saying" in command:
+                jarvis.say("Okay, I'm ready")
+                jarvis.runAndWait()
+
+                voice = listener.listen(source)
+                command = listener.recognize_google(voice)
+                jarvis.say(command)
+                jarvis.runAndWait()
+                print()
+                continue
+
+            elif "goodbye jarvis" or "goodbye" in command:
+                jarvis.say("Thank you. Goodbye!")
+                jarvis.runAndWait()
+                break
 
 except:
     pass
