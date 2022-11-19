@@ -45,7 +45,7 @@ try:
             command = listener.recognize_google(voice)
             command = command.lower()
 
-            if "repeat what i'm going to saying" in command or "please repeat me" in command:
+            if "repeat what i'm going to say" in command or "please repeat me" in command:
                 jarvis.say("Okay, master. I'm ready")
                 jarvis.runAndWait()
 
