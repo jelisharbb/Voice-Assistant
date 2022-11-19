@@ -7,6 +7,7 @@
 # importing modules
 import speech_recognition as sr
 import pyttsx3
+import pywhatkit
 
 listener = sr.Recognizer()
 jarvis = pyttsx3.init()
@@ -49,6 +50,13 @@ try:
                 jarvis.say(command)
                 jarvis.runAndWait()
                 print()
+                continue
+
+            elif "play" in command:
+                song =  command.replace('play', '')
+                jarvis.say("Playing" + song)
+                jarvis.runAndWait()
+                pywhatkit.playonyt(song)
                 continue
 
             elif "goodbye jarvis" or "goodbye" in command:
