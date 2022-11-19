@@ -11,6 +11,7 @@ import pywhatkit
 import datetime
 from datetime import date
 import wikipedia
+import pyjokes
 
 listener = sr.Recognizer()
 jarvis = pyttsx3.init()
@@ -19,7 +20,7 @@ jarvis.setProperty("rate", 140)
 # try and except statement to catch the error prevent the program from crashing
 try:
     with sr.Microphone() as source:
-        print("Jarvis is here. Call his attention.")
+        print("Jarvis is here. Call his attention.\n")
 
         # loop for user to say "hey, jarvis"
         while True:
@@ -27,13 +28,14 @@ try:
             command = listener.recognize_google(voice)
             command = command.lower()
 
-            if 'hey jarvis' == command:
+            if 'hey jarvis' in command:
                 break
 
             else:
-                print('Say "Hey, Jarvis" for him to listen.')
+                jarvis.say("Say 'Hey Jarvis!' first.")
+                jarvis.runAndWait()
 
-        jarvis.say("Hi, master. What's up?")
+        jarvis.say("Hi master. What's up?")
         jarvis.runAndWait()
 
         # loop for jarvis to listen to user again
@@ -74,13 +76,22 @@ try:
                 info = wikipedia.summary(person, 1)
                 jarvis.say(info)
                 jarvis.runAndWait()
+            
+            elif "joke" in command:
+                jarvis.say(pyjokes.get_joke())
+                jarvis.say("Hahaha. Master if you don't laugh at my joke I will get mad.")
+                jarvis.runAndWait()
 
             elif "thank you" in command or "thanks" in command:
-                jarvis.say("You are welcome, master.")
+                jarvis.say("You are welcome master.")
+                jarvis.runAndWait()
+
+            elif "i love you" in command or "love you" in command:
+                jarvis.say("I love you too master.")
                 jarvis.runAndWait()
 
             elif "goodbye jarvis" in command or "goodbye" in command:
-                jarvis.say("Thank you, master. Goodbye!")
+                jarvis.say("Thank you master. Goodbye!")
                 jarvis.runAndWait()
                 break
 
