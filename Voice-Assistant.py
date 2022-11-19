@@ -90,6 +90,10 @@ try:
                 jarvis.say("I love you too master.")
                 jarvis.runAndWait()
 
+            elif "sorry" in command or "apologize" in command:
+                jarvis.say("It's okay master.")
+                jarvis.runAndWait()
+
             elif "goodbye jarvis" in command or "goodbye" in command:
                 jarvis.say("Thank you master. Goodbye!")
                 jarvis.runAndWait()
