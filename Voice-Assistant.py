@@ -33,7 +33,7 @@ try:
             else:
                 print('Say "Hey, Jarvis" for him to listen.')
 
-        jarvis.say("Hi, I'm listening")
+        jarvis.say("Hi, master. What's up?")
         jarvis.runAndWait()
 
         # loop for jarvis to listen to user again
@@ -43,8 +43,8 @@ try:
             command = listener.recognize_google(voice)
             command = command.lower()
 
-            if "repeat what i'm saying" in command:
-                jarvis.say("Okay, I'm ready")
+            if "repeat what i'm going to saying" in command or "please repeat me" in command:
+                jarvis.say("Okay, master. I'm ready")
                 jarvis.runAndWait()
 
                 voice = listener.listen(source)
@@ -61,12 +61,12 @@ try:
 
             elif "time" in command:
                 time = datetime.datetime.now().strftime("%I %M %p")
-                jarvis.say("It's" + time)
+                jarvis.say("It's" + time + "master")
                 jarvis.runAndWait()
 
             elif "date" in command:
                 date = date.today().strftime("%B %d %Y")
-                jarvis.say("Today is" + date)
+                jarvis.say("Today is" + date + "master")
                 jarvis.runAndWait()
 
             elif "who is" in command:
@@ -75,13 +75,17 @@ try:
                 jarvis.say(info)
                 jarvis.runAndWait()
 
+            elif "thank you" in command or "thanks" in command:
+                jarvis.say("You are welcome, master.")
+                jarvis.runAndWait()
+
             elif "goodbye jarvis" in command or "goodbye" in command:
-                jarvis.say("Thank you. Goodbye!")
+                jarvis.say("Thank you, master. Goodbye!")
                 jarvis.runAndWait()
                 break
 
             else:
-                jarvis.say("I don't know what you're saying. Try again.")
+                jarvis.say("I don't know what you're saying, master. Please try again.")
                 jarvis.runAndWait()
 
 except:
